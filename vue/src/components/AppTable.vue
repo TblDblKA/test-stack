@@ -51,7 +51,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import type { RecordItem } from "@/data/records.ts";
 
 const props = defineProps<{
@@ -118,6 +118,10 @@ const pagedRecords = computed(() => {
 function onRowClick(row: RecordItem): void {
   emit('click', row)
 }
+
+watch(pageSize, () => {
+  pageNum.value = 1;
+})
 </script>
 
 <style scoped lang="scss">
